@@ -1,5 +1,5 @@
 ---
-title: "Chocolatine vs. pain au chocolat?"
+title: "Chocolatine ou pain au chocolat?"
 author: "Liza Zasukhina"
 date: "July 16, 2019"
 output: html_document
@@ -12,10 +12,8 @@ lapply(pac, require, character.only = TRUE)
 data <- read.csv('data_choc.csv')
 ```
 
-## Chocolatine ou pain au chocolat?
 
-This page is inspired by my recent trip to France where I attended an international R
-conference useR!2019
+### This page is inspired by my recent trip to France where I attended an international R conference useR!2019
 
 
 ```{r map, echo=FALSE}
