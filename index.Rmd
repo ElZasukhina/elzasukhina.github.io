@@ -1,0 +1,37 @@
+---
+title: "Chocolatine vs. pain au chocolat?"
+author: "Liza Zasukhina"
+date: "July 16, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+pac <- c('maps', 'leaflet', 'dplyr', 'reshape2', 'magrittr', 'gtrendsR', 'shiny', 'shinyWidgets')
+lapply(pac, require, character.only = TRUE)
+
+data <- read.csv('data_choc.csv')
+```
+
+## Chocolatine ou pain au chocolat?
+
+This page is inspired by my recent trip to France where I attended an international R
+conference useR!2019
+
+
+```{r map, echo=FALSE}
+m <- leaflet(data) %>% addTiles()
+
+m %>% addMarkers(~Long, ~Lat, 
+                 popup = paste("In", data$Region, " region you'd rather ask 'Je voudrais un(e)", data$pastry, "'"), icon = list(iconUrl = 'https://pngimage.net/wp-content/uploads/2018/05/chocolatine-png-4.png',  
+                                                                                                                                iconSize = c(50, 30))) %>% 
+  addCircles(data[data$pastry == 'pain.au.chocolat',]$Long, 
+             data[data$pastry == 'pain.au.chocolat',]$Lat,
+             radius = 100000, opacity = 0, fill = TRUE, 
+             fillOpacity = 0.5, color = "lavender") %>%
+  addCircles(data[data$pastry == 'chocolatine',]$Long, 
+             data[data$pastry == 'chocolatine',]$Lat,
+             radius = 100000, opacity = 0.1, fill = TRUE, 
+             fillOpacity = 0.5, color = "pink")
+```
+
+
